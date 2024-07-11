@@ -32,9 +32,9 @@ test("getCommandTree gets the correct file list", async () => {
     },
   }
 
-  const fileTree = await getCommandTree(DIR)
+  const commandTree = await getCommandTree(DIR)
 
-  expect(fileTree).toEqual(expected)
+  expect(commandTree).toEqual(expected)
 })
 
 test("shows help menu when called with no commands", () => {
