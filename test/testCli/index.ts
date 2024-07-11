@@ -1,5 +1,7 @@
 #!/usr/bin/env npx tsx
 
-import { run } from '../../src'
+import { run } from "../../src"
 
-run(__dirname)
+;(async () => {
+  await run(__dirname)
+})()
