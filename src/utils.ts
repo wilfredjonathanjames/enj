@@ -18,6 +18,7 @@ export async function getCommandTree(commandDir: string) {
       pathTreeArray.forEach((segment) => {
         if (node.children[segment] == null) {
           node.children[segment] = {
+            name: segment,
             path: path.join(node.path, segment),
             children: {},
           }
@@ -29,6 +30,7 @@ export async function getCommandTree(commandDir: string) {
     },
     {
       root: {
+        name: "",
         path: commandDir,
         children: {},
       },

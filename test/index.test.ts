@@ -9,18 +9,22 @@ const CMD = path.join(DIR, "index.ts")
 test("getCommandTree gets the correct file list", async () => {
   const expected = {
     root: {
+      name: "",
       path: path.join(DIR),
       children: {
         command_one: {
+          name: "command_one",
           path: path.join(DIR, "command_one"),
           children: {},
         },
         command_two: {
+          name: "command_two",
           path: path.join(DIR, "command_two"),
           children: {
             command_three: {
-              children: {},
+              name: "command_three",
               path: path.join(DIR, "command_two", "command_three"),
+              children: {},
             },
           },
         },
