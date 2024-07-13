@@ -1,8 +1,11 @@
 import { Command as Command_ } from "@commander-js/extra-typings"
 
+export type Cmd = Command_
+
 export type CommandTreeNode = {
   name: string
   path: string
+  cmd?: Cmd
   children: {
     [key: string]: CommandTreeNode
   }
@@ -17,5 +20,3 @@ export type Call = {
   args: RawArgs
   command: CommandTreeNode
 }
-
-export type Cmd = Command_

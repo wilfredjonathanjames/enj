@@ -1,11 +1,22 @@
 import path from "node:path"
 import { glob } from "glob"
 import { Command } from "@commander-js/extra-typings"
-import { Call, CommandTree, RawArgs } from "src/types"
+import { Call, Cmd, CommandTree, CommandTreeNode, RawArgs } from "src/types"
 
-export async function getCommandTree(commandDir: string) {
+function getProgramName() {
+  return "zli"
+}
+
+type GetCommandTreeOptions = {
+  noCmd: boolean
+}
+export async function getCommandTree(
+  commandDir: string,
+  { noCmd }: GetCommandTreeOptions = { noCmd: false },
+) {
   const globPath = path.join(commandDir, "**/[^_]*.ts{,/**}")
   const files_ = await glob(globPath)
+  const programName = getProgramName()
 
   const fileTree = files_.reduce(
     (acc, filepath_) => {
@@ -15,13 +26,18 @@ export async function getCommandTree(commandDir: string) {
         .split("/")
         .filter((segment) => segment !== "index")
 
-      let node = acc.root
+      let node: CommandTreeNode = acc.root
       pathTreeArray.forEach((segment) => {
         if (node.children[segment] == null) {
+          const cmd = new Command().name(segment)
           node.children[segment] = {
             name: segment,
             path: path.join(node.path, segment),
             children: {},
+          }
+          if (!noCmd) {
+            node.cmd?.addCommand(cmd)
+            node.children[segment].cmd = cmd
           }
         }
         node = node.children[segment]
@@ -31,8 +47,9 @@ export async function getCommandTree(commandDir: string) {
     },
     {
       root: {
-        name: "",
+        name: programName,
         path: commandDir,
+        cmd: noCmd ? undefined : new Command().name(programName),
         children: {},
       },
     } as CommandTree,
@@ -57,8 +74,20 @@ export function findCommand(commandTree: CommandTree, args_: RawArgs): Call {
   }
 }
 
+export async function loadCommand(command: CommandTreeNode) {
+  const { default: cmdBuilder_ } = await import(command.path)
+  const cmdBuilder =
+    cmdBuilder_ instanceof Function ? cmdBuilder_ : defaultCmdBuilder
+  const cmd = await cmdBuilder(command.cmd)
+  cmd.name(command.name)
+  return cmd
+}
+
 export async function executeCall({ command, args: args }: Call) {
-  const { default: cmdBuilder } = await import(command.path)
-  const cmd = await cmdBuilder(new Command())
+  const cmd = await loadCommand(command)
   await cmd.parseAsync(args, { from: "user" })
+}
+
+function defaultCmdBuilder(cmd: Cmd) {
+  return cmd
 }

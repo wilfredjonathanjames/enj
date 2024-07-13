@@ -8,7 +8,7 @@ const CMD = path.join(DIR, "index.ts")
 
 const EXPECTED_COMMAND_TREE: CommandTree = {
   root: {
-    name: "",
+    name: "zli",
     path: path.join(DIR),
     children: {
       command_one: {
@@ -32,7 +32,7 @@ const EXPECTED_COMMAND_TREE: CommandTree = {
 }
 
 export default async function setup({ provide }: GlobalSetupContext) {
-  const commandTree = await getCommandTree(DIR)
+  const commandTree = await getCommandTree(DIR, { noCmd: true })
   provide("DIR", DIR)
   provide("CMD", CMD)
   provide("COMMAND_TREE", commandTree)
