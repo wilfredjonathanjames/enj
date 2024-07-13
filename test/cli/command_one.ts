@@ -1,5 +1,11 @@
-import { Args } from "src/types"
+import { Cmd } from "src/types"
 
-export async function action(args: Args) {
-  console.log("CALLED WITH", args)
+export default async function (cmd: Cmd) {
+  return cmd
+    .argument("<firstArg>", "firstArg")
+    .argument("<secondArg>", "secondArg")
+    .option("--option", "option")
+    .action((firstArg, secondArg, opts) => {
+      console.log("CALLED WITH", firstArg, secondArg, opts)
+    })
 }

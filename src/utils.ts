@@ -1,5 +1,6 @@
 import path from "node:path"
 import { glob } from "glob"
+import { Command } from "@commander-js/extra-typings"
 import { Call, CommandTree, RawArgs } from "src/types"
 
 export async function getCommandTree(commandDir: string) {
@@ -56,7 +57,8 @@ export function findCommand(commandTree: CommandTree, args_: RawArgs): Call {
   }
 }
 
-export async function executeCall({ command, args }: Call) {
-  const module = await import(command.path)
-  module.action?.(args)
+export async function executeCall({ command, args: args }: Call) {
+  const { default: cmdBuilder } = await import(command.path)
+  const cmd = await cmdBuilder(new Command())
+  await cmd.parseAsync(args, { from: "user" })
 }
