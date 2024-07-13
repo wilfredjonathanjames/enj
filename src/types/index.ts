@@ -8,3 +8,10 @@ export type CommandTreeNode = {
 export type CommandTree = {
   root: CommandTreeNode
 }
+
+export type RawArgs = string[]
+
+export type Command = {
+  args: RawArgs
+  command: CommandTreeNode
+}
