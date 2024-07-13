@@ -10,8 +10,9 @@ export type CommandTree = {
 }
 
 export type RawArgs = string[]
+export type Args = any[]
 
-export type Command = {
+export type Call = {
   args: RawArgs
   command: CommandTreeNode
 }

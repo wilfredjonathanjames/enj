@@ -1,6 +1,6 @@
 import path from "node:path"
 import { glob } from "glob"
-import { Command, CommandTree, CommandTreeNode, RawArgs } from "src/types"
+import { Call, CommandTree, RawArgs } from "src/types"
 
 export async function getCommandTree(commandDir: string) {
   const globPath = path.join(commandDir, "**/[^_]*.ts{,/**}")
@@ -39,7 +39,7 @@ export async function getCommandTree(commandDir: string) {
   return fileTree
 }
 
-export function findCommand(commandTree: CommandTree, args_: RawArgs): Command {
+export function findCommand(commandTree: CommandTree, args_: RawArgs): Call {
   let command = commandTree.root
   let args = [...args_]
   for (const arg of args_) {
@@ -56,4 +56,7 @@ export function findCommand(commandTree: CommandTree, args_: RawArgs): Command {
   }
 }
 
-export function runCommand(command: Command) {}
+export async function executeCall({ command, args }: Call) {
+  const module = await import(command.path)
+  module.action?.(args)
+}
