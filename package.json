@@ -10,8 +10,8 @@
   "scripts": {
     "test": "vitest --run",
     "test:watch": "vitest",
-    "prettier": "prettier src/ --write",
-    "prettier:check": "prettier src/ --list-different",
+    "prettier": "prettier src/ test/ --write",
+    "prettier:check": "prettier src/ test/ --check",
     "prepare": "husky",
     "release": "np"
   },

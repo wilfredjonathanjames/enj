@@ -46,7 +46,7 @@ test("findCommand returns correct result when first arg doesn't match a layer on
   const command = findCommand(COMMAND_TREE, args)
   expect(command).toEqual({
     args,
-    command: EXPECTED_COMMAND_TREE.root
+    command: EXPECTED_COMMAND_TREE.root,
   })
 })
 
@@ -55,7 +55,7 @@ test("findCommand returns correct result when first arg is a layer two command",
   const command = findCommand(COMMAND_TREE, args)
   expect(command).toEqual({
     args,
-    command: EXPECTED_COMMAND_TREE.root
+    command: EXPECTED_COMMAND_TREE.root,
   })
 })
 
@@ -64,7 +64,7 @@ test("findCommand returns correct result when first arg is a layer one command",
   const command = findCommand(COMMAND_TREE, args)
   expect(command).toEqual({
     args: [],
-    command: EXPECTED_COMMAND_TREE.root.children.command_one
+    command: EXPECTED_COMMAND_TREE.root.children.command_one,
   })
 })
 
@@ -73,7 +73,7 @@ test("findCommand returns correct result when first arg is a layer one command",
   const command = findCommand(COMMAND_TREE, args)
   expect(command).toEqual({
     args: [],
-    command: EXPECTED_COMMAND_TREE.root.children.command_one
+    command: EXPECTED_COMMAND_TREE.root.children.command_one,
   })
 })
 
@@ -82,7 +82,8 @@ test("findCommand returns correct result when accessing a layer two command", as
   const command = findCommand(COMMAND_TREE, args)
   expect(command).toEqual({
     args: [],
-    command: EXPECTED_COMMAND_TREE.root.children.command_two.children.command_three
+    command:
+      EXPECTED_COMMAND_TREE.root.children.command_two.children.command_three,
   })
 })
 
