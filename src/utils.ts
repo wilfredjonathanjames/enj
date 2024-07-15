@@ -1,9 +1,23 @@
 import path from "node:path"
+import { existsSync } from "node:fs"
 import { glob } from "glob"
+import { packageDirectory } from "pkg-dir"
 import { Command } from "@commander-js/extra-typings"
 import { Call, Cmd, CommandTree, CommandTreeNode, RawArgs } from "src/types"
 
-function getProgramName() {
+export async function getRootDir() {
+  const nearestRoot = await packageDirectory()
+  if (nearestRoot != null) {
+    const programName = await getProgramName()
+    let programPath = path.join(nearestRoot, programName)
+    if (existsSync(programPath)) {
+      return programPath
+    }
+  }
+  return process.cwd()
+}
+
+async function getProgramName() {
   return "zli"
 }
 
@@ -16,7 +30,7 @@ export async function getCommandTree(
 ) {
   const globPath = path.join(commandDir, "**/[^_]*.ts{,/**}")
   const files_ = await glob(globPath)
-  const programName = getProgramName()
+  const programName = await getProgramName()
 
   const fileTree = files_.reduce(
     (acc, filepath_) => {
@@ -75,10 +89,21 @@ export function findCommand(commandTree: CommandTree, args_: RawArgs): Call {
 }
 
 export async function loadCommand(command: CommandTreeNode) {
-  const { default: cmdBuilder_ } = await import(command.path)
-  const cmdBuilder =
-    cmdBuilder_ instanceof Function ? cmdBuilder_ : defaultCmdBuilder
-  const cmd = await cmdBuilder(command.cmd)
+  let cmdBuilder = defaultCmdBuilder
+  try {
+    const { default: cmdBuilder_ } = await import(command.path)
+    if (cmdBuilder_ instanceof Function) {
+      cmdBuilder = cmdBuilder_
+    }
+  } catch (e: any) {
+    const rootDir = await getRootDir()
+    if (command.path !== rootDir) {
+      console.log(
+        `Missing command definition ${path.join(command.path, "index.{js|ts}")}`,
+      )
+    }
+  }
+  const cmd = await cmdBuilder(command.cmd!)
   cmd.name(command.name)
   return cmd
 }
@@ -88,6 +113,6 @@ export async function executeCall({ command, args: args }: Call) {
   await cmd.parseAsync(args, { from: "user" })
 }
 
-function defaultCmdBuilder(cmd: Cmd) {
+async function defaultCmdBuilder(cmd: Cmd) {
   return cmd
 }
