@@ -1,5 +1,9 @@
 import { execSync } from "node:child_process"
-import { expect, inject, test } from "vitest"
+import { beforeAll, expect, inject, test } from "vitest"
+
+beforeAll(() => {
+  process.chdir(inject("TEST_DIR"))
+})
 
 test("CLI calls command_one with args", () => {
   const output = execSync(`${inject("CMD")} command_one test this --option`, {

@@ -1,23 +1,12 @@
 import path from "node:path"
 import { existsSync } from "node:fs"
 import { glob } from "glob"
-import { packageDirectory } from "pkg-dir"
+import { packageDirectorySync } from "pkg-dir"
 import { Command } from "@commander-js/extra-typings"
 import { Call, Cmd, CommandTree, CommandTreeNode, RawArgs } from "src/types"
+import getConfig from "src/config"
 
-export async function getRootDir() {
-  const nearestRoot = await packageDirectory()
-  if (nearestRoot != null) {
-    const programName = await getProgramName()
-    let programPath = path.join(nearestRoot, programName)
-    if (existsSync(programPath)) {
-      return programPath
-    }
-  }
-  return process.cwd()
-}
-
-async function getProgramName() {
+export function getProgramName() {
   return "zli"
 }
 
@@ -30,7 +19,7 @@ export async function getCommandTree(
 ) {
   const globPath = path.join(commandDir, "**/[^_]*.ts{,/**}")
   const files_ = await glob(globPath)
-  const programName = await getProgramName()
+  const programName = getProgramName()
 
   const fileTree = files_.reduce(
     (acc, filepath_) => {
@@ -96,7 +85,7 @@ export async function loadCommand(command: CommandTreeNode) {
       cmdBuilder = cmdBuilder_
     }
   } catch (e: any) {
-    const rootDir = await getRootDir()
+    const { rootDir } = await getConfig()
     if (command.path !== rootDir) {
       console.log(
         `Missing command definition ${path.join(command.path, "index.{js|ts}")}`,
