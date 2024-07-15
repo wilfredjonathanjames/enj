@@ -1,6 +1,6 @@
 import path from "node:path"
 import { CommandTree } from "src/types"
-import { getCommandTree } from "src/utils"
+import { getCommandTree } from "src/lib"
 import type { GlobalSetupContext } from "vitest/node"
 
 const DIR = path.join(__dirname, "..", "cli")

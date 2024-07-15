@@ -1,4 +1,4 @@
-import { executeCall, findCommand, getCommandTree } from "./utils"
+import { executeCall, findCommand, getCommandTree } from "src/lib"
 
 async function run(rootDir: string) {
   const args = process.argv.slice(2)

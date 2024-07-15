@@ -1,5 +1,5 @@
 import { expect, test, beforeAll, inject } from "vitest"
-import { findCommand, getCommandTree } from "../src/utils"
+import { findCommand, getCommandTree } from "../src/lib"
 
 test("findCommand returns correct result when first arg doesn't match a layer one command", async () => {
   const args = ["test", "command_one"]
