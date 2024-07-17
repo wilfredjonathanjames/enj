@@ -1,6 +1,6 @@
 {
   "name": "@wilfredjonathanjames/zli",
-  "version": "0.0.1-alpha.0",
+  "version": "0.0.0",
   "description": "File Based Router for building CLIs.",
   "main": "dist/index.js",
   "repository": {
@@ -38,7 +38,7 @@
   "devDependencies": {
     "@types/node": "^20.14.10",
     "husky": "^9.0.11",
-    "np": "^10.0.6",
+    "np": "^10.0.7",
     "prettier": "^3.3.2",
     "tsx": "^4.16.2",
     "vite-tsconfig-paths": "^4.3.2",
