@@ -1,0 +1,66 @@
+{
+  "name": "@wilfredjonathanjames/zli",
+  "version": "0.0.1-alpha.0",
+  "description": "File Based Router for building CLIs.",
+  "main": "dist/index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wilfredjonathanjames/zli.git"
+  },
+  "bin": "src/bin.ts",
+  "scripts": {
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "prettier": "prettier src/ test/ --write",
+    "prettier:check": "prettier src/ test/ --check",
+    "prepare": "husky",
+    "release": "np"
+  },
+  "keywords": [
+    "cli",
+    "file",
+    "based",
+    "router",
+    "typescript",
+    "commandline",
+    "interface",
+    "builder",
+    "tool",
+    "project",
+    "commands"
+  ],
+  "author": "Wilfred James <hello@wilfredjames.com> (https://github.com/wilfredjonathanjames)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/wilfredjonathanjames/zli/issues"
+  },
+  "homepage": "https://github.com/wilfredjonathanjames/zli#readme",
+  "devDependencies": {
+    "@types/node": "^20.14.10",
+    "husky": "^9.0.11",
+    "np": "^10.0.6",
+    "prettier": "^3.3.2",
+    "tsx": "^4.16.2",
+    "vite-tsconfig-paths": "^4.3.2",
+    "vitest": "^2.0.2"
+  },
+  "files": [
+    "src/",
+    "!src/**/*.test.*"
+  ],
+  "publishConfig": {
+    "access": "restricted",
+    "registry": "https://npm.pkg.github.com"
+  },
+  "np": {
+    "releaseDraft": false
+  },
+  "dependencies": {
+    "@commander-js/extra-typings": "^12.1.0",
+    "caller-callsite": "^5.0.0",
+    "cosmiconfig": "^9.0.0",
+    "glob": "^11.0.0",
+    "pkg-dir": "^8.0.0",
+    "zod": "^3.23.8"
+  }
+}
