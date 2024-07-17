@@ -1,11 +1,11 @@
 {
-  "name": "zli",
-  "version": "0.0.0",
+  "name": "enj",
+  "version": "0.0.1",
   "description": "File Based Router for building CLIs.",
   "main": "dist/index.js",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/wilfredjonathanjames/zli.git"
+    "url": "git+https://github.com/wilfredjonathanjames/enj.git"
   },
   "bin": "src/bin.ts",
   "scripts": {
@@ -32,9 +32,9 @@
   "author": "Wilfred James <hello@wilfredjames.com> (https://github.com/wilfredjonathanjames)",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/wilfredjonathanjames/zli/issues"
+    "url": "https://github.com/wilfredjonathanjames/enj/issues"
   },
-  "homepage": "https://github.com/wilfredjonathanjames/zli#readme",
+  "homepage": "https://github.com/wilfredjonathanjames/enj#readme",
   "devDependencies": {
     "@types/node": "^20.14.10",
     "husky": "^9.0.11",

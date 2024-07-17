@@ -7,7 +7,7 @@ import { Call, Cmd, CommandTree, CommandTreeNode, RawArgs } from "src/types"
 import getConfig from "src/config"
 
 export function getProgramName() {
-  return "zli"
+  return "enj"
 }
 
 type GetCommandTreeOptions = {
