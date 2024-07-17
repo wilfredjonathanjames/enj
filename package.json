@@ -1,5 +1,5 @@
 {
-  "name": "@wilfredjonathanjames/zli",
+  "name": "zli",
   "version": "0.0.0",
   "description": "File Based Router for building CLIs.",
   "main": "dist/index.js",
@@ -48,10 +48,6 @@
     "src/",
     "!src/**/*.test.*"
   ],
-  "publishConfig": {
-    "access": "restricted",
-    "registry": "https://npm.pkg.github.com"
-  },
   "np": {
     "releaseDraft": false
   },
