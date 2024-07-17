@@ -1,6 +1,6 @@
 {
   "name": "enj",
-  "version": "0.0.1",
+  "version": "0.0.0",
   "description": "File Based Router for building CLIs.",
   "main": "dist/index.js",
   "repository": {
