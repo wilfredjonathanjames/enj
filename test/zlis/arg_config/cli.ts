@@ -2,5 +2,7 @@
 
 import { run } from "src"
 ;(async () => {
-  run({}, { configFileSearchFromCallsite: false })
+  run({
+    rootDir: "arg_commands",
+  })
 })()

@@ -24,7 +24,8 @@ export async function getCommandTree(
   const fileTree = files_.reduce(
     (acc, filepath_) => {
       const pathTreeArray = filepath_
-        .replace(commandDir + "/", "")
+        .replace(commandDir, "")
+        .replace(/^\//g, "")
         .replace(/\.ts$/, "")
         .split("/")
         .filter((segment) => segment !== "index")

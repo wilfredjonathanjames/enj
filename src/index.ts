@@ -1,8 +1,17 @@
 import { executeCall, findCommand, getCommandTree } from "src/lib"
-import getConfig from "src/config"
+import getConfig, { ArgConfig, initConfig } from "src/config"
 
-async function run() {
+type RunOptions = {
+  configFileSearchFromCallsite: boolean
+}
+async function run(
+  argConfig: ArgConfig = {},
+  { configFileSearchFromCallsite }: RunOptions = {
+    configFileSearchFromCallsite: true,
+  },
+) {
   const args = process.argv.slice(2)
+  await initConfig(argConfig, { configFileSearchFromCallsite })
   const { rootDir } = await getConfig()
   const commandTree = await getCommandTree(rootDir)
   const call = findCommand(commandTree, args)

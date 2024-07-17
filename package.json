@@ -9,7 +9,7 @@
   },
   "bin": "src/bin.ts",
   "scripts": {
-    "test": "vitest --run",
+    "test": "vitest run",
     "test:watch": "vitest",
     "prettier": "prettier src/ test/ --write",
     "prettier:check": "prettier src/ test/ --check",
@@ -57,6 +57,7 @@
   },
   "dependencies": {
     "@commander-js/extra-typings": "^12.1.0",
+    "caller-callsite": "^5.0.0",
     "cosmiconfig": "^9.0.0",
     "glob": "^11.0.0",
     "pkg-dir": "^8.0.0",

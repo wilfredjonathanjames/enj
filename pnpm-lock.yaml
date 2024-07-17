@@ -11,6 +11,9 @@ importers:
       '@commander-js/extra-typings':
         specifier: ^12.1.0
         version: 12.1.0(commander@12.1.0)
+      caller-callsite:
+        specifier: ^5.0.0
+        version: 5.0.0
       cosmiconfig:
         specifier: ^9.0.0
         version: 9.0.0(typescript@5.5.3)
@@ -515,9 +518,17 @@ packages:
     resolution: {integrity: sha512-GHTSNSYICQ7scH7sZ+M2rFopRoLh8t2bLSW6BbgrtLsahOIB5iyAVJf9GjWK3cYTDaMj4XdBpM1cA6pIS0Kv2w==}
     engines: {node: '>= 0.4'}
 
+  caller-callsite@5.0.0:
+    resolution: {integrity: sha512-l3+xZHsuNlFjchy1nl1kpQwi7PhKHgtQ7MOx5ijHwlouAjnwRNjq3AlxH8SGuWiF5XAhb/mSH+c90LIDFjJKtA==}
+    engines: {node: ^12.20.0 || ^14.13.1 || >=16.0.0}
+
   callsites@3.1.0:
     resolution: {integrity: sha512-P8BjAsXvZS+VIDUI11hHCQEv74YT67YUi5JJFNWIqL235sBmjX4+qx9Muvls5ivyNENctx46xQLQ3aTuE7ssaQ==}
     engines: {node: '>=6'}
+
+  callsites@4.2.0:
+    resolution: {integrity: sha512-kfzR4zzQtAE9PC7CzZsjl3aBNbXWuXiSeOCdLcPpBfGW8YuCqQHcRPFDbr/BPVmd3EEPVpuFzLyuT/cUhPr4OQ==}
+    engines: {node: '>=12.20'}
 
   camelcase@7.0.1:
     resolution: {integrity: sha512-xlx1yCK2Oc1APsPXDL2LdlNP6+uu8OCDdhOBSVT279M/S+y75O30C2VuD8T2ogdePBBl7PfPF4504tnLgX3zfw==}
@@ -2316,7 +2327,13 @@ snapshots:
       get-intrinsic: 1.2.4
       set-function-length: 1.2.2
 
+  caller-callsite@5.0.0:
+    dependencies:
+      callsites: 4.2.0
+
   callsites@3.1.0: {}
+
+  callsites@4.2.0: {}
 
   camelcase@7.0.1: {}
 
