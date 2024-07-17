@@ -3,13 +3,13 @@ import { CommandTree } from "src/types"
 import { getCommandTree } from "src/lib"
 import type { GlobalSetupContext } from "vitest/node"
 
-const DIR = path.join(__dirname, "..", "zlis/cwd_config/zli/")
+const DIR = path.join(__dirname, "..", "enjs/cwd_config/enj/")
 const CMD = path.resolve(__dirname, "../../src/bin.ts")
-const ZLIS_DIR = path.join(__dirname, "..", "zlis")
+const ENJS_DIR = path.join(__dirname, "..", "enjs")
 
 const EXPECTED_COMMAND_TREE: CommandTree = {
   root: {
-    name: "zli",
+    name: "enj",
     path: path.join(DIR),
     children: {
       command_one: {
@@ -35,7 +35,7 @@ const EXPECTED_COMMAND_TREE: CommandTree = {
 export default async function setup({ provide }: GlobalSetupContext) {
   const commandTree = await getCommandTree(DIR, { noCmd: true })
   provide("CMD", CMD)
-  provide("ZLIS_DIR", ZLIS_DIR)
+  provide("ENJS_DIR", ENJS_DIR)
   provide("COMMAND_TREE", commandTree)
   provide("EXPECTED_COMMAND_TREE", EXPECTED_COMMAND_TREE)
 }
@@ -43,7 +43,7 @@ export default async function setup({ provide }: GlobalSetupContext) {
 declare module "vitest" {
   export interface ProvidedContext {
     CMD: string
-    ZLIS_DIR: string
+    ENJS_DIR: string
     COMMAND_TREE: CommandTree
     EXPECTED_COMMAND_TREE: CommandTree
   }

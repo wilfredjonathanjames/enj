@@ -1,9 +1,7 @@
-# ZLI
-> **ZLI** - noun
-> <br />(/ziː ɛl aɪ/)
+# Enj
+> **Enj** - noun
+> <br />(/ɛndʒ/)
 >
-> A file based router for building easy command line interfaces.
+> A CLI framework wrapped in a file based router.
 >
-> Example: Developers praised the simplicity and efficiency of ZLI in their projects.
-
-`zli` is a CLI framework wrapped in a file based router.
+> Example: Developers praised the simplicity and efficiency of `enj` in their projects.

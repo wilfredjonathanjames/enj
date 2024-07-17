@@ -55,8 +55,8 @@ export async function initConfig(
   ]
 
   const envConfig = {
-    configFile: process.env["ZLI_CONFIG_FILE"],
-    rootDir: process.env["ZLI_ROOT_DIR"],
+    configFile: process.env["ENJ_CONFIG_FILE"],
+    rootDir: process.env["ENJ_ROOT_DIR"],
   }
   const fileConfig = {}
   const fallbackDir =
