@@ -1,5 +1,4 @@
-import { run } from "./build/index.mjs"
 ;(async () => {
+  const { run } = await import("./build/index.js")
   run({}, { configFileSearchFromCallsite: false })
 })()
-

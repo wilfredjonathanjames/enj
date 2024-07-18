@@ -3,10 +3,9 @@
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
 if command -v npx >/dev/null 2>&1 && npx --no-install tsx --help >/dev/null 2>&1; then
-    exec npx tsx "$SCRIPT_DIR/run.js" "$@"
+  exec npx tsx "$SCRIPT_DIR/run.js" "$@"
 else
-    exec node "$SCRIPT_DIR/run.js" "$@"
+  exec node "$SCRIPT_DIR/run.js" "$@"
 fi
 
 exit 0
-
