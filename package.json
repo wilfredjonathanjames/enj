@@ -6,6 +6,7 @@
     "import": "./dist/build/index.mjs",
     "require": "./dist/build/index.js"
   },
+  "types": "dist/build/index.d.ts",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/wilfredjonathanjames/enj.git"
@@ -14,7 +15,7 @@
   "scripts": {
     "test": "vitest run",
     "test:watch": "vitest",
-    "build": "tsup src/index.ts  --sourcemap --out-dir dist/build/ --format esm,cjs",
+    "build": "tsup src/index.ts --sourcemap --out-dir dist/build/ --format esm,cjs --dts",
     "build:watch": "pnpm build --watch",
     "prettier": "prettier src/ test/ --write",
     "prettier:check": "prettier src/ test/ --check",
