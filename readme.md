@@ -30,9 +30,37 @@
 
 2. Add a file to that directory called `hello-world.js` containing the following
 
+   ##### ESM
+
+   ```javascript
+   // enj/hello-world.js
+   export default (cmd) =>
+     cmd.action(() => {
+       console.log(`Hello World!`)
+     })
+   ```
+
+   ##### CommonJS
+
    ```javascript
    // enj/hello-world.js
    module.exports = (cmd) =>
+     cmd.action(() => {
+       console.log(`Hello World!`)
+     })
+   ```
+
+   ##### Typescript
+
+   Enj also supports typescript with [one simple installation](#typescript-3).
+
+   Make sure your file extension is `.ts`.
+
+   ```typescript
+   // enj/hello-world.ts
+   import type { Cmd } from "enj"
+
+   export default (cmd: Cmd) =>
      cmd.action(() => {
        console.log(`Hello World!`)
      })
@@ -44,8 +72,6 @@
    npx enj hello-world
    # Hello World!
    ```
-
-Enj also supports typescript with [one simple installation](#typescript-3).
 
 ## Install
 
