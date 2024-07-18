@@ -1,6 +1,6 @@
 {
   "name": "enj",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "File Based Router for building CLIs.",
   "exports": {
     "import": "./dist/build/index.mjs",
