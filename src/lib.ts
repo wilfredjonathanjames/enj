@@ -85,20 +85,24 @@ export function findCommand(commandTree: CommandTree, args_: RawArgs): Call {
 
 export async function loadCommand(command: CommandTreeNode) {
   let cmdBuilder = defaultCmdBuilder
-  if (command.path == null) {
-    return defaultCmdBuilder()
-  }
-  try {
-    const { default: cmdBuilder_ } = await import(command.path)
-    if (cmdBuilder_ instanceof Function) {
-      cmdBuilder = cmdBuilder_
-    }
-  } catch (e: any) {
-    const { rootDir } = await getConfig()
-    if (command.path !== rootDir) {
-      console.log(
-        `Missing command definition ${path.join(command.path, "index.{js|ts}")}`,
-      )
+  if (command.path != null) {
+    try {
+      let { default: cmdBuilder_ } = await import(command.path)
+      // handle edgecase module convesions lead to nested defaults
+      if (cmdBuilder_.default) {
+        cmdBuilder_ = cmdBuilder_.default
+      }
+      if (cmdBuilder_ instanceof Function) {
+        cmdBuilder = cmdBuilder_
+      }
+    } catch (e: any) {
+      console.error(e)
+      const { rootDir } = await getConfig()
+      if (command.path !== rootDir) {
+        console.log(
+          `Missing command definition ${path.join(command.path, "index.{js|ts}")}`,
+        )
+      }
     }
   }
   const cmd = await cmdBuilder(command.cmd!)
