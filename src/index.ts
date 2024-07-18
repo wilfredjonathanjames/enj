@@ -1,6 +1,7 @@
 import { executeCall, findCommand, getCommandTree } from "src/lib"
 import getConfig, { ArgConfig, initConfig } from "src/config"
 export type { Cmd } from "src/types"
+export { Option, Command, Argument } from "@commander-js/extra-typings"
 
 type RunOptions = {
   configFileSearchFromCallsite: boolean
