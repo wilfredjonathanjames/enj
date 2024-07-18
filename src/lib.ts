@@ -86,7 +86,6 @@ export function findCommand(commandTree: CommandTree, args_: RawArgs): Call {
 export async function loadCommand(command: CommandTreeNode) {
   let cmdBuilder = defaultCmdBuilder
   if (command.path == null) {
-    console.log("No command path.")
     return defaultCmdBuilder()
   }
   try {
