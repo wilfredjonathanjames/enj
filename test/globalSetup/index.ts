@@ -4,7 +4,7 @@ import { getCommandTree } from "src/lib"
 import type { GlobalSetupContext } from "vitest/node"
 
 const DIR = path.join(__dirname, "..", "enjs/cwd_config/enj/")
-const CMD = path.resolve(__dirname, "../../src/bin.ts")
+const CMD = path.resolve(__dirname, "../devenj")
 const ENJS_DIR = path.join(__dirname, "..", "enjs")
 
 const EXPECTED_COMMAND_TREE: CommandTree = {

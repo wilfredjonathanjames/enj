@@ -7,7 +7,7 @@
     "type": "git",
     "url": "git+https://github.com/wilfredjonathanjames/enj.git"
   },
-  "bin": "src/bin.ts",
+  "bin": "test/devenj",
   "scripts": {
     "test": "vitest run",
     "test:watch": "vitest",
