@@ -1,5 +1,6 @@
 import { executeCall, findCommand, getCommandTree } from "src/lib"
 import getConfig, { ArgConfig, initConfig } from "src/config"
+export type { Cmd } from "src/types"
 
 type RunOptions = {
   configFileSearchFromCallsite: boolean

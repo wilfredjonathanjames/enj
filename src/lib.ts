@@ -17,26 +17,31 @@ export async function getCommandTree(
   commandDir: string,
   { noCmd }: GetCommandTreeOptions = { noCmd: false },
 ) {
-  const globPath = path.join(commandDir, "**/[^_]*.ts{,/**}")
+  const globPath = path.join(commandDir, "**/[^_]*.{js,ts}{,/**}")
   const files_ = await glob(globPath)
   const programName = getProgramName()
 
   const fileTree = files_.reduce(
-    (acc, filepath_) => {
-      const pathTreeArray = filepath_
+    (acc, filepath) => {
+      const simplePath = filepath
         .replace(commandDir, "")
         .replace(/^\//g, "")
-        .replace(/\.ts$/, "")
-        .split("/")
-        .filter((segment) => segment !== "index")
+        .replace(/\.(js|ts)$/, "")
+      const pathTreeArray = simplePath.split("/")
+      if (pathTreeArray[pathTreeArray.length - 1] === "index") {
+        pathTreeArray.pop()
+      }
 
       let node: CommandTreeNode = acc.root
+      if (simplePath === "index") {
+        node.path = filepath
+      }
       pathTreeArray.forEach((segment) => {
         if (node.children[segment] == null) {
           const cmd = new Command().name(segment)
           node.children[segment] = {
             name: segment,
-            path: path.join(node.path, segment),
+            path: filepath,
             children: {},
           }
           if (!noCmd) {
@@ -52,7 +57,7 @@ export async function getCommandTree(
     {
       root: {
         name: programName,
-        path: commandDir,
+        path: null,
         cmd: noCmd ? undefined : new Command().name(programName),
         children: {},
       },
@@ -80,6 +85,10 @@ export function findCommand(commandTree: CommandTree, args_: RawArgs): Call {
 
 export async function loadCommand(command: CommandTreeNode) {
   let cmdBuilder = defaultCmdBuilder
+  if (command.path == null) {
+    console.log("No command path.")
+    return defaultCmdBuilder()
+  }
   try {
     const { default: cmdBuilder_ } = await import(command.path)
     if (cmdBuilder_ instanceof Function) {
@@ -103,6 +112,6 @@ export async function executeCall({ command, args: args }: Call) {
   await cmd.parseAsync(args, { from: "user" })
 }
 
-async function defaultCmdBuilder(cmd: Cmd) {
-  return cmd
+async function defaultCmdBuilder(cmd?: Cmd) {
+  return cmd || new Command()
 }

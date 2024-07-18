@@ -2,19 +2,25 @@
   "name": "enj",
   "version": "0.0.1",
   "description": "File Based Router for building CLIs.",
-  "main": "dist/index.js",
+  "exports": {
+    "import": "dist/build/index.mjs",
+    "require": "dist/build/index.js"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/wilfredjonathanjames/enj.git"
   },
-  "bin": "src/bin.ts",
+  "bin": "dist/enj",
   "scripts": {
     "test": "vitest run",
     "test:watch": "vitest",
+    "build": "tsup src/index.ts  --sourcemap --out-dir dist/build/ --format esm,cjs",
+    "build:watch": "pnpm build --watch",
     "prettier": "prettier src/ test/ --write",
     "prettier:check": "prettier src/ test/ --check",
     "prepare": "husky",
-    "release": "np"
+    "release": "np",
+    "version": "pnpm build"
   },
   "keywords": [
     "cli",
@@ -40,13 +46,18 @@
     "husky": "^9.0.11",
     "np": "^10.0.7",
     "prettier": "^3.3.2",
+    "tsup": "^8.1.2",
     "tsx": "^4.16.2",
     "vite-tsconfig-paths": "^4.3.2",
     "vitest": "^2.0.2"
   },
   "files": [
-    "src/",
-    "!src/**/*.test.*"
+    "dist/enj",
+    "dist/run.js",
+    "dist/package.json",
+    "dist/build/*",
+    "!src/",
+    "!test/"
   ],
   "np": {
     "releaseDraft": false

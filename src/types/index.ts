@@ -4,7 +4,7 @@ export type Cmd = Command_
 
 export type CommandTreeNode = {
   name: string
-  path: string
+  path: string | null
   cmd?: Cmd
   children: {
     [key: string]: CommandTreeNode
