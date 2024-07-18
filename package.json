@@ -3,8 +3,8 @@
   "version": "0.0.2",
   "description": "File Based Router for building CLIs.",
   "exports": {
-    "import": "dist/build/index.mjs",
-    "require": "dist/build/index.js"
+    "import": "./dist/build/index.mjs",
+    "require": "./dist/build/index.js"
   },
   "repository": {
     "type": "git",
