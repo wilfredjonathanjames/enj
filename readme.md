@@ -9,7 +9,7 @@
 > **Enj** - noun
 > <br />(/ɛndʒ/)
 >
-> A crazy simple CLI framework wrapped in an intuitive file based router.
+> A powerful CLI framework wrapped in an intuitive file based router.
 
 <br />
 

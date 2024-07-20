@@ -1,7 +1,7 @@
 {
   "name": "enj",
   "version": "0.0.6",
-  "description": "File Based Router for building CLIs.",
+  "description": "A powerful CLI framework wrapped in an intuitive file based router.",
   "exports": {
     "import": "./dist/build/index.mjs",
     "require": "./dist/build/index.js"
