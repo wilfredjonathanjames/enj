@@ -35,6 +35,7 @@ export async function getCommandTree(
         return acc
       }
 
+      // if the last segment is "index" remove it
       if (pathTreeArray[pathTreeArray.length - 1] === "index") {
         pathTreeArray.pop()
       }
