@@ -249,6 +249,14 @@ cmd
     .action(({ cheese }) => { ... })
 ```
 
+_Note for Typescript users: narrow the choices type by using `as const`:_
+
+```
+            ...
+            .choices(["cheddar", "brie", "gouda", "parmesan"] as const)
+            ...
+```
+
 ##### Arguments
 
 ```javascript
@@ -298,6 +306,18 @@ cmd
             ]),
     )
     .action((size) => { ... })
+```
+
+_Note for Typescript users: narrow the choices type by using `as const`:_
+
+```
+            ...
+            .choices([
+                "small",
+                "medium",
+                "large",
+            ] as const),
+            ...
 ```
 
 This is only scratching the surface.
