@@ -28,6 +28,13 @@ export async function getCommandTree(
         .replace(/^\//g, "")
         .replace(/\.(js|ts)$/, "")
       const pathTreeArray = simplePath.split("/")
+
+      // ignore paths that have a directory starting with _
+      const ignorePath = pathTreeArray.find((segment) => segment.match(/^_/))
+      if (ignorePath) {
+        return acc
+      }
+
       if (pathTreeArray[pathTreeArray.length - 1] === "index") {
         pathTreeArray.pop()
       }
