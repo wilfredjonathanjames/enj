@@ -1,6 +1,8 @@
 #!/usr/bin/env npx tsx
 
-import { run } from "src"
 ;(async () => {
+  const {
+    default: { run },
+  } = await import("src")
   run({}, { configFileSearchFromCallsite: false })
 })()
