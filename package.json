@@ -1,6 +1,6 @@
 {
   "name": "enj",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "description": "A powerful CLI framework wrapped in an intuitive file based router.",
   "exports": {
     "import": "./dist/build/index.mjs",
