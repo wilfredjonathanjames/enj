@@ -1,11 +1,12 @@
 #!/usr/bin/env bash
 
-SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+SCRIPT_DIR="$(dirname "$(realpath "${BASH_SOURCE[0]}")")"
+RUN_SCRIPT_LOCATION="$SCRIPT_DIR/run.js"
 
-if command -v npx >/dev/null 2>&1 && npx --no-install tsx --help >/dev/null 2>&1; then
-  exec npx tsx "$SCRIPT_DIR/run.js" "$@"
+if command -v npx > /dev/null 2>&1 && npx --no-install tsx --help > /dev/null 2>&1; then
+    exec npx tsx "$RUN_SCRIPT_LOCATION" "$@"
 else
-  exec node "$SCRIPT_DIR/run.js" "$@"
+    exec node "$RUN_SCRIPT_LOCATION" "$@"
 fi
 
 exit 0
