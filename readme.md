@@ -24,6 +24,11 @@
 
 - Doesn't support Windows yet
 
+### Future
+When I can prioritise it-
+- [ ] Unironically rewrite in Rust or Zig, get execution time sub 10ms
+- [ ] Enable writing commands any executable language
+
 ## Quickstart
 
 1. Create a directory in your project root called `enj`
