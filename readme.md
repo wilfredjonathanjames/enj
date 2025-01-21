@@ -27,7 +27,7 @@
 ### Future
 When I can prioritise it-
 - [ ] Unironically rewrite in Rust or Zig, get execution time sub 10ms
-- [ ] Enable writing commands any executable language
+- [ ] Enable writing commands in any executable language
 
 ## Quickstart
 
